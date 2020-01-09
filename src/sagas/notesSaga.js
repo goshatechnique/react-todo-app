@@ -1,22 +1,25 @@
 import { call, put, takeEvery } from "redux-saga/effects";
-import axios from "axios";
 
 import { FETCH_NOTES } from "../constants/actions";
 import { notesRequest, notesResponse, notesFail } from "../actions/actions";
-
-const url = process.env.REACT_APP_DATABASE_URL;
+import firebaseAPI from "../firebase";
 
 function* notesWorker() {
-  let data;
   try {
+    let notesArray = [];
     yield put(notesRequest());
-    yield call(async () => {
-      return axios.get(`${url}/notes.json`).then(response => {
-        data = Object.values(response.data);
-        console.log("update");
+    yield call(() => {
+      return new Promise(resolve => {
+        firebaseAPI
+          .database()
+          .ref("notes")
+          .on("child_added", snapshot => {
+            resolve(snapshot.val());
+            notesArray.push(snapshot.val());
+          });
       });
     });
-    yield put(notesResponse(data));
+    yield put(notesResponse(notesArray));
   } catch (error) {
     yield put(notesFail());
   }

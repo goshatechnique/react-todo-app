@@ -7,9 +7,6 @@ import Form from "../components/Form";
 import NotesList from "../components/NotesList";
 import { fetchNotes } from "../actions/actions";
 import store from "../store";
-import axios from "axios";
-
-const url = process.env.REACT_APP_DATABASE_URL;
 
 const Home = props => {
   useEffect(() => {
@@ -18,16 +15,19 @@ const Home = props => {
 
   const [notes, setNotes] = useState([]);
 
-  const onAddNote = async noteTitle => {
+  const onAddNote = noteTitle => {
     const newNote = {
       id: new Date().toLocaleTimeString(),
       title: noteTitle,
       isVisible: true,
       isDone: false
     };
+    firebaseAPI
+      .database()
+      .ref("notes")
+      .push(newNote);
     setNotes(notes.concat(newNote));
-    await axios.post(`${url}/notes.json`, newNote);
-    await store.dispatch(fetchNotes());
+    store.dispatch(fetchNotes());
   };
 
   const onRemoveNote = id => {
@@ -83,18 +83,26 @@ const Home = props => {
     <>
       <Header headerTitle="Note" />
       <Form onAddNote={onAddNote} />
-      <NotesList
-        onChangeRecordStatus={onChangeRecordStatus}
-        onRemoveNote={onRemoveNote}
-        notes={props.notes}
-      />
+
+      {!props.notesIsLoading ? (
+        <NotesList
+          onChangeRecordStatus={onChangeRecordStatus}
+          onRemoveNote={onRemoveNote}
+          notes={props.notes}
+        />
+      ) : (
+        <div className="notes-container">
+          <div class="lds-dual-ring"></div>
+        </div>
+      )}
     </>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    notes: state.notes
+    notes: state.notes,
+    notesIsLoading: state.notesIsLoading
   };
 };
 
