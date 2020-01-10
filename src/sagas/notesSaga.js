@@ -9,7 +9,11 @@ function* notesWorker() {
     let notesArray = [];
     yield put(notesRequest());
     yield call(() => {
-      return new Promise(resolve => {
+      setTimeout(() => {}, 10000);
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          reject();
+        }, 2000);
         firebaseAPI
           .database()
           .ref("notes")

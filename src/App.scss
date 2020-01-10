@@ -35,14 +35,29 @@ body {
 
 .header {
   width: 100%;
-  height: 60px;
+  min-height: 60px;
+  height: 8vh;
   background-color: $mainColor;
   color: $textColor;
   font-size: 28px;
-  padding-left: 1rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+}
+
+.article {
+  width: 800px;
+  height: 92vh;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.article-p {
+  font-size: 12px;
+  opacity: 0.3;
+  user-select: none;
 }
 
 .logo {
@@ -71,17 +86,10 @@ body {
   background-color: $secondaryColor;
 }
 
-.article {
-  width: 800px;
-  margin: 0 auto;
-  background: $mainColor;
-}
-
 .form-container {
+  padding-top: 40px;
   margin: 0 auto;
-  padding: 20px;
   height: 100px;
-
   width: 66%;
   display: flex;
   flex-flow: row wrap;
@@ -175,6 +183,14 @@ body {
   color: $mainColor;
 }
 
+.error-page-div {
+  margin-left: 15%;
+  margin-top: 10vh;
+  margin-right: 15%;
+  font-size: 18px;
+  height: 90vh;
+}
+
 .alert-red {
   @extend %alert;
   background: $redAlert;
@@ -200,12 +216,33 @@ body {
   cursor: pointer;
 }
 
+.note-exit {
+  opacity: 1;
+}
+
+.note-exit-active {
+  opacity: 0;
+  transition: 1000ms;
+  transform: translateY(-100px);
+}
+
+.alert-exit {
+  opacity: 1;
+}
+
+.alert-exit-active {
+  opacity: 0;
+  transition: 1000ms;
+  transform: scale(0.5);
+}
+
 .lds-dual-ring {
   display: inline-block;
   margin: 0 auto;
   width: 80px;
   height: 80px;
 }
+
 .lds-dual-ring:after {
   content: " ";
   display: block;
@@ -263,5 +300,10 @@ body {
   .nav-link {
     width: 96px;
     font-size: 15px;
+  }
+  .alert-close {
+    width: 50px;
+    height: 50px;
+    font-size: 50px;
   }
 }

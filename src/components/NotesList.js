@@ -1,37 +1,41 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 const NodesList = ({ notes, onRemoveNote, onChangeRecordStatus }) => {
   return (
     <div className="notes-container">
-      <ul className="list">
+      <TransitionGroup component="ul" className="list">
         {notes === undefined
           ? null
           : notes
               .filter(note => note.isVisible === true)
               .map(note => (
-                <li
-                  onClick={() => {
-                    onChangeRecordStatus(note.id);
-                  }}
-                  key={note.id}
-                  className={
-                    note.isDone ? "list-record list-record-done" : "list-record"
-                  }
-                >
-                  {note.isDone ? <s>{note.title}</s> : note.title}
-                  <div
-                    onClick={e => {
-                      e.stopPropagation();
-                      onRemoveNote(note.id);
+                <CSSTransition key={note.id} classNames={"note"} timeout={1000}>
+                  <li
+                    onClick={() => {
+                      onChangeRecordStatus(note.id);
                     }}
-                    className="list-record-button"
+                    className={
+                      note.isDone
+                        ? "list-record list-record-done"
+                        : "list-record"
+                    }
                   >
-                    &times;
-                  </div>
-                </li>
+                    {note.isDone ? <s>{note.title}</s> : note.title}
+                    <div
+                      onClick={e => {
+                        e.stopPropagation();
+                        onRemoveNote(note.id);
+                      }}
+                      className="list-record-button"
+                    >
+                      &times;
+                    </div>
+                  </li>
+                </CSSTransition>
               ))}
-      </ul>
+      </TransitionGroup>
     </div>
   );
 };

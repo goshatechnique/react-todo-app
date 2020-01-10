@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import Alert from "../components/Alert";
 
@@ -26,20 +27,24 @@ const Form = ({ onAddNote }) => {
         setAlertStatus(0);
       }, 2000);
       return (
-        <Alert
-          hideAlert={hideAlert}
-          theme="alert-orange"
-          message="Надо что-то написать!"
-        />
+        <CSSTransition classNames={"alert"} timeout={1000}>
+          <Alert
+            hideAlert={hideAlert}
+            theme="alert-orange"
+            message="Надо что-то написать!"
+          />
+        </CSSTransition>
       );
     }
     if (alertStatus === 2) {
       return (
-        <Alert
-          hideAlert={hideAlert}
-          theme="alert-red"
-          message="Что-то сдохло"
-        />
+        <CSSTransition classNames={"alert"} timeout={1000}>
+          <Alert
+            hideAlert={hideAlert}
+            theme="alert-red"
+            message="Что-то сдохло"
+          />
+        </CSSTransition>
       );
     }
   };
@@ -49,7 +54,11 @@ const Form = ({ onAddNote }) => {
   };
 
   return (
-    <form onSubmit={handlerAdd} className="form-container">
+    <TransitionGroup
+      component="form"
+      onSubmit={handlerAdd}
+      className="form-container"
+    >
       <input
         onChange={event => {
           setInputValue(event.target.value);
@@ -63,7 +72,7 @@ const Form = ({ onAddNote }) => {
         +
       </div>
       {handlerAlert()}
-    </form>
+    </TransitionGroup>
   );
 };
 

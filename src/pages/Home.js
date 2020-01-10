@@ -83,17 +83,16 @@ const Home = props => {
     <>
       <Header headerTitle="Note" />
       <Form onAddNote={onAddNote} />
-
-      {!props.notesIsLoading ? (
+      {props.notesIsLoading ? (
+        <div className="notes-container">
+          <div className="lds-dual-ring"></div>
+        </div>
+      ) : (
         <NotesList
           onChangeRecordStatus={onChangeRecordStatus}
           onRemoveNote={onRemoveNote}
           notes={props.notes}
         />
-      ) : (
-        <div className="notes-container">
-          <div class="lds-dual-ring"></div>
-        </div>
       )}
     </>
   );
