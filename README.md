@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## This application is available at the link
+
+https://notes-app-57338.web.app/
 
 ## Available Scripts
 
