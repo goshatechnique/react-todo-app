@@ -6,6 +6,7 @@ $orangeAlert: #ffd840;
 $orangeAlertText: #dd7300;
 $redAlert: #e04d65;
 $redAlertText: #7e081b;
+$activeColor: #207df6;
 
 %alert {
   width: 100%;
@@ -20,8 +21,12 @@ $redAlertText: #7e081b;
   position: relative;
 }
 
-body {
+* {
+  font-size: 20px;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
   margin: 0;
   padding: 0;
 }
@@ -61,7 +66,9 @@ body {
 }
 
 .logo {
-  margin-right: 100px;
+  margin-right: 80px;
+  padding-left: 20px;
+  font-size: 1.5em;
 }
 
 .nav-link {
@@ -69,9 +76,8 @@ body {
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  width: 128px;
+  width: 130px;
   height: 100%;
-  font-size: 16px;
   color: $textColor;
   border: none;
   background: none;
@@ -101,7 +107,6 @@ body {
   width: 80%;
   height: 36px;
   min-width: 300px;
-  font-size: 20px;
   line-height: 36px;
   padding-left: 15px;
   padding-right: 15px;
@@ -111,9 +116,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 36px;
-  width: 36px;
-  height: 36px;
+  line-height: 2em;
+  font-size: 2em;
+  width: 40px;
+  height: 40px;
   border: none;
   background: none;
   transition: 0.3s;
@@ -142,10 +148,10 @@ body {
 }
 
 .list-record-button {
-  min-width: 22px;
-  min-height: 22px;
-  max-width: 22px;
-  max-height: 22px;
+  line-height: 1.5em;
+  font-size: 2em;
+  width: 30px;
+  height: 30px;
   background: none;
   border: 1px solid $specialColor;
   color: $specialColor;
@@ -166,8 +172,7 @@ body {
   width: 100%;
   user-select: none;
   cursor: pointer;
-  height: 44px;
-  font-size: 22px;
+  height: 50px;
   border: 1px solid $secondaryColor;
   box-sizing: border-box;
   margin-bottom: -1px;
@@ -187,7 +192,7 @@ body {
   margin-left: 15%;
   margin-top: 10vh;
   margin-right: 15%;
-  font-size: 18px;
+  font-size: 0.8em;
   height: 90vh;
 }
 
@@ -207,7 +212,7 @@ body {
   position: absolute;
   top: 0px;
   right: 0px;
-  font-size: 24px;
+  font-size: 1em;
   width: 24px;
   height: 24px;
   display: flex;
@@ -255,6 +260,10 @@ body {
   animation: lds-dual-ring 1.2s linear infinite;
 }
 
+.nav-link.active {
+  text-shadow: 0px 0px 4px $textColor;
+}
+
 @keyframes lds-dual-ring {
   0% {
     transform: rotate(0deg);
@@ -273,13 +282,9 @@ body {
     width: 90%;
   }
   .list-record {
-    font-size: 18px;
     min-width: 330px;
     padding-left: 5px;
     padding-right: 5px;
-  }
-  .list-record-button {
-    font-size: 22px;
   }
   .form-input {
     padding-left: 5px;
@@ -287,23 +292,36 @@ body {
   }
 }
 
-@media all and (max-width: 360px) {
+@media all and (max-width: 420px) {
+  .logo {
+    margin-right: 40px;
+    padding-left: 10px;
+    font-size: 1.3em;
+    font-weight: 600;
+  }
   .form-container {
     min-width: 360px;
   }
   .notes-container {
-    width: 80%;
+    width: 90%;
   }
   .logo {
     margin-right: 30px;
   }
   .nav-link {
-    width: 96px;
-    font-size: 15px;
+    width: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 0.6em;
+    font-weight: 600;
+  }
+  .nav-link.active {
+    text-shadow: none;
+    text-decoration: underline;
   }
   .alert-close {
     width: 50px;
     height: 50px;
-    font-size: 50px;
+    font-size: 2.5em;
   }
 }

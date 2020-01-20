@@ -5,10 +5,10 @@ const Header = props => {
   return (
     <nav className="header">
       <div className="logo">{props.headerTitle}</div>
-      <NavLink to="/" className="nav-link">
+      <NavLink to="/home" className="nav-link">
         Главная
       </NavLink>
-      <NavLink to="/about" className="nav-link">
+      <NavLink to="about" className="nav-link">
         Информация
       </NavLink>
     </nav>
