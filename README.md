@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-## This application is available at the link
-=======
 ## Application available on
->>>>>>> 1c1045c85a2ec1dd61e7b0389f13c64e16425a38
 
 https://notes-app-57338.web.app/
 
