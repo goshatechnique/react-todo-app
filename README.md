@@ -1,4 +1,4 @@
-## This application is available at the link
+## Application available on
 
 https://notes-app-57338.web.app/
 
