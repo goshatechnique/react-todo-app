@@ -1,6 +1,6 @@
 ## Application available at
 
-https://weather-today-0402f.firebaseapp.com/
+https://notes-app-57338.web.app/home
 
 ![alt text](https://i.ibb.co/G2KDChv/notes-app-1.png)
 
